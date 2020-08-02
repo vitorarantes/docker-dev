@@ -1,4 +1,4 @@
-FROM php:7.4.8-cli-buster
+FROM php:7.4-cli-buster
 
 ENV COMPOSER_MEMORY_LIMIT=-1
 
