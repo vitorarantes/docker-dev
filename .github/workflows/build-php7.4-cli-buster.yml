@@ -2,10 +2,8 @@ name: Build php7.4-cli-buster
 
 on:
   schedule:
-    - cron: '0 1 * * 1'
+    - cron: '0 7 * * 1'
   push:
-    branches:
-      - main
 
 jobs:
   build:
