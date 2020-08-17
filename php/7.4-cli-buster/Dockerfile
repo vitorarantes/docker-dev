@@ -31,6 +31,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get install -y --no-install-recommends libzip-dev && \
     docker-php-ext-configure zip && \
     docker-php-ext-install zip && \
+    # memcached
+    apt-get install -y --no-install-recommends libmemcached-dev && \
+    pecl install memcached && \
+    docker-php-ext-enable memcached && \
+    # redis
+    pecl install redis && \
+    docker-php-ext-enable redis && \
+    # apcu
+    pecl install apcu && \
+    docker-php-ext-enable apcu && \
     # other
     docker-php-ext-configure bcmath && \
     docker-php-ext-install bcmath pdo_mysql exif exif intl mysqli pcntl && \
