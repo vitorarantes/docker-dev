@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get remove -y libzip-dev libfreetype6-dev libpng-dev libmagickwand-dev libjpeg62-turbo-dev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=1.10.9
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 RUN groupadd --gid 1000 noroot && \
     useradd --uid 1000 --gid noroot --shell /bin/bash --create-home noroot
