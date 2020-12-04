@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         default-mysql-client \
         curl wget \
         zip unzip && \
+    # https://docs.spatie.be/laravel-medialibrary/v8/installation-setup/#optimization-tools
+    apt-get install -y --no-install-recommends jpegoptim optipng pngquant gifsicle && \
     # ldap installation & configuration
     apt-get install -y --no-install-recommends libldap2-dev && \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && \
