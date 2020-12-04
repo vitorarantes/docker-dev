@@ -1,7 +1,5 @@
 FROM php:8.0-cli-buster
 
-ENV COMPOSER_MEMORY_LIMIT=-1
-
 # System
 RUN apt-get update && apt-get install -y --no-install-recommends \
         ghostscript \
@@ -74,10 +72,11 @@ RUN \
   pickle install redis && \
   docker-php-ext-enable redis
 
+ENV COMPOSER_MEMORY_LIMIT=-1
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
 # https://docs.spatie.be/laravel-medialibrary/v8/installation-setup/#optimization-tools
 RUN apt-get install -y --no-install-recommends jpegoptim optipng pngquant gifsicle
-
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # Clean Packages
 RUN apt-get remove -y libmemcached-dev libzip-dev libldap2-dev libfreetype6-dev libpng-dev libmagickwand-dev libjpeg62-turbo-dev && \
