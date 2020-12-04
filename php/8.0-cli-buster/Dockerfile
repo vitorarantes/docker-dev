@@ -77,7 +77,7 @@ RUN \
 # https://docs.spatie.be/laravel-medialibrary/v8/installation-setup/#optimization-tools
 RUN apt-get install -y --no-install-recommends jpegoptim optipng pngquant gifsicle
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=1.10.9
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # Clean Packages
 RUN apt-get remove -y libmemcached-dev libzip-dev libldap2-dev libfreetype6-dev libpng-dev libmagickwand-dev libjpeg62-turbo-dev && \
