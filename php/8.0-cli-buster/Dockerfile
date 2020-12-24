@@ -93,3 +93,4 @@ RUN chown -R noroot:noroot /home/noroot
 RUN chown noroot:noroot /app
 
 WORKDIR /app
+
