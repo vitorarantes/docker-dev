@@ -66,4 +66,7 @@ RUN groupadd --gid 1000 noroot && \
 RUN mkdir -p /home/noroot/.composer/cache
 RUN chown -R noroot:noroot /home/noroot
 
+RUN mkdir /app
+RUN chown noroot:noroot /app
+
 WORKDIR /app
