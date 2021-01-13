@@ -50,6 +50,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get remove -y libzip-dev libfreetype6-dev libpng-dev libmagickwand-dev libjpeg62-turbo-dev && \
     rm -rf /var/lib/apt/lists/*
 
+# install nodejs
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash && apt-get install -y nodejs
+# install yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && apt-get install -y yarn
+
+# install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 RUN groupadd --gid 1000 noroot && \
