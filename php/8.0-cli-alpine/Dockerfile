@@ -22,7 +22,6 @@ RUN apk add --no-cache --update \
 
 RUN apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
-        autoconf \
         freetype-dev \
         libevent-dev \
         libjpeg-turbo-dev \
@@ -58,6 +57,7 @@ RUN apk add --no-cache --virtual .build-deps \
     pecl install APCu; \
     pecl install memcached; \
     pecl install redis; \
+    pecl install swoole; \
     \
     docker-php-ext-enable \
         apcu \
