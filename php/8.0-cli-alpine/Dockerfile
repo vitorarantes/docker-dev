@@ -11,11 +11,10 @@ RUN apk add --no-cache --update \
     openldap-dev \
     sudo \
     bash \
-    # supervisor \
-    # ghostscript \
-    # gnupg \
-    # mysql-client \
-    # nano \
+    supervisor \
+    ghostscript \
+    gnupg \
+    mysql-client \
     curl \
     wget \
     zip \
