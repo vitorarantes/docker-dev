@@ -15,6 +15,7 @@ RUN apk add --no-cache --update \
     ghostscript \
     gnupg \
     mysql-client \
+    git \
     curl \
     wget \
     zip \
