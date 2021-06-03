@@ -82,6 +82,9 @@ RUN apt-get install -y --no-install-recommends jpegoptim optipng pngquant gifsic
 RUN apt-get remove -y libmemcached-dev libzip-dev libldap2-dev libfreetype6-dev libpng-dev libmagickwand-dev libjpeg62-turbo-dev && \
   rm -rf /var/lib/apt/lists/*
 
+# install nodejs
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash && apt-get install -y nodejs
+
 # noroot user
 RUN groupadd --gid 1000 noroot && \
     useradd --uid 1000 --gid noroot --shell /bin/bash --create-home noroot
