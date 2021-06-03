@@ -19,7 +19,9 @@ RUN apk add --no-cache --update \
     curl \
     wget \
     zip \
-    unzip
+    unzip \
+    nodejs \
+    npm
 
 RUN apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
