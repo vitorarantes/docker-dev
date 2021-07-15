@@ -36,8 +36,7 @@ RUN apk add --no-cache --virtual .build-deps \
         libpng-dev \
         libxml2-dev \
         curl-dev \
-        oniguruma-dev
-    ; \
+        oniguruma-dev; \
     \
     docker-php-ext-configure gd --with-freetype --with-jpeg; \
     docker-php-ext-configure ldap; \
