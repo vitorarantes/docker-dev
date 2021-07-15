@@ -1,4 +1,4 @@
-FROM php:8.0-cli-alpine
+FROM php:8.0-cli-alpine3.14
 
 RUN set -ex
 
@@ -21,7 +21,11 @@ RUN apk add --no-cache --update \
     zip \
     unzip \
     nodejs \
-    npm
+    npm \
+    imagemagick \
+    libgomp \
+    imagemagick-dev \
+    libtool
 
 RUN apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
@@ -32,11 +36,7 @@ RUN apk add --no-cache --virtual .build-deps \
         libpng-dev \
         libxml2-dev \
         curl-dev \
-        oniguruma-dev \
-        # pcre-dev \
-        # imagemagick-dev \
-        # libwebp-dev \
-        # gmp-dev \
+        oniguruma-dev
     ; \
     \
     docker-php-ext-configure gd --with-freetype --with-jpeg; \
@@ -61,32 +61,26 @@ RUN apk add --no-cache --virtual .build-deps \
     pecl install memcached; \
     pecl install redis; \
     pecl install swoole; \
+    pecl install imagick; \
     \
     docker-php-ext-enable \
         apcu \
         memcached \
+        imagick \
         redis; \
     \
     rm -rf /tmp/*; \
     apk del .build-deps
 
-# temporary solution, waiting for imagick to be released officially
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-RUN install-php-extensions imagick && \
-    rm -rf /usr/bin/install-php-extensions
-
 # install composer
 ENV COMPOSER_MEMORY_LIMIT=-1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
-RUN rm -rf /tmp/*
-
 RUN addgroup -g 1000 -S noroot && \
     adduser -u 1000 -S noroot -G noroot --home /home/noroot --shell /bin/bash
 
-RUN mkdir -p /home/noroot/.composer/cache
-
-RUN chown -R noroot:noroot /home/noroot
+RUN mkdir -p /home/noroot/.composer/cache; \
+    chown -R noroot:noroot /home/noroot
 
 RUN mkdir /app; \
     chown -R noroot:noroot /app;
