@@ -84,4 +84,6 @@ RUN mkdir -p /home/noroot/.composer/cache; \
 RUN mkdir /app; \
     chown -R noroot:noroot /app;
 
+RUN npm i -g release-it release-it-lerna-changelog
+
 WORKDIR /app
