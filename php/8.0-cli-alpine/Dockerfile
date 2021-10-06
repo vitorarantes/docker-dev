@@ -75,14 +75,18 @@ RUN apk add --no-cache --virtual .build-deps \
 ENV COMPOSER_MEMORY_LIMIT=-1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
+RUN npm i -g npm
+RUN npm i -g yarn
+RUN npm i -g pnpm
+
 RUN addgroup -g 1000 -S noroot && \
     adduser -u 1000 -S noroot -G noroot --home /home/noroot --shell /bin/bash
 
-RUN mkdir -p /home/noroot/.composer/cache; \
-    chown -R noroot:noroot /home/noroot
+RUN mkdir -p /home/noroot/.composer/cache
+RUN chown -R noroot:noroot /home/noroot
 
-RUN mkdir /app; \
-    chown -R noroot:noroot /app;
+RUN mkdir /app
+RUN chown -R noroot:noroot /app;
 
 RUN npm i -g release-it release-it-lerna-changelog
 
