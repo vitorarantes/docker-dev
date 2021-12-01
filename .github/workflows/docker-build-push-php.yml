@@ -33,6 +33,7 @@ jobs:
         id: docker_build_php80_fpm_alpine
         uses: docker/build-push-action@v2
         with:
+          platforms: linux/amd64,linux/arm64,linux/arm64/v8
           push: true
           file: ./php/8.0-fpm-alpine/Dockerfile
           tags: vitorarantes/php:8.0-fpm-alpine
@@ -46,6 +47,7 @@ jobs:
         id: docker_build_php80_cli_alpine
         uses: docker/build-push-action@v2
         with:
+          platforms: linux/amd64,linux/arm64,linux/arm64/v8
           push: true
           file: ./php/8.0-cli-alpine/Dockerfile
           tags: vitorarantes/php:8.0-cli-alpine
