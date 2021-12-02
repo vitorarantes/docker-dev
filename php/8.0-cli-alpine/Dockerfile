@@ -1,6 +1,4 @@
-FROM php:8.0-cli-alpine3.14
-
-RUN set -ex
+FROM php:8.0-cli-alpine3.15
 
 # packages that need to be kept installed
 RUN apk add --no-cache --update \
@@ -87,7 +85,5 @@ RUN chown -R noroot:noroot /home/noroot
 
 RUN mkdir /app
 RUN chown -R noroot:noroot /app;
-
-RUN npm i -g release-it release-it-lerna-changelog
 
 WORKDIR /app
