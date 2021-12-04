@@ -13,11 +13,7 @@ jobs:
     if: ${{ contains(github.ref, 'php') || github.event_name == 'schedule' }}
     steps:
       - name: Set up QEMU
-        id: qemu
         uses: docker/setup-qemu-action@v1
-        with:
-          image: tonistiigi/binfmt:latest
-          platforms: all
 
       - name: Available platforms
         run: echo ${{ steps.qemu.outputs.platforms }}
@@ -40,7 +36,7 @@ jobs:
         id: docker_build_php81_cli_alpine
         uses: docker/build-push-action@v2
         with:
-          platforms: linux/amd64,linux/arm64,linux/arm64/v8
+          platforms: linux/amd64,linux/arm64
           push: true
           file: ./php/8.1-cli-alpine/Dockerfile
           tags: vitorarantes/php:8.1-cli-alpine
@@ -54,7 +50,7 @@ jobs:
         id: docker_build_php80_cli_alpine
         uses: docker/build-push-action@v2
         with:
-          platforms: linux/amd64,linux/arm64,linux/arm64/v8
+          platforms: linux/amd64,linux/arm64
           push: true
           file: ./php/8.0-cli-alpine/Dockerfile
           tags: vitorarantes/php:8.0-cli-alpine
@@ -68,7 +64,7 @@ jobs:
         id: docker_build_php80_fpm_alpine
         uses: docker/build-push-action@v2
         with:
-          platforms: linux/amd6,linux/arm64,linux/arm64/v8
+          platforms: linux/amd6,linux/arm64
           push: true
           file: ./php/8.0-fpm-alpine/Dockerfile
           tags: vitorarantes/php:8.0-fpm-alpine
