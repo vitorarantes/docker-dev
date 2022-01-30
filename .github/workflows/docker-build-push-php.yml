@@ -5,7 +5,7 @@ on:
     types:
       - created
   schedule:
-    - cron: '0 1 * * SUN'
+    - cron: '0 2 * * SUN'
 
 jobs:
   main:
