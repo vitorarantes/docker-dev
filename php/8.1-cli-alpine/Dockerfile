@@ -38,6 +38,7 @@ RUN apk add --no-cache --virtual .build-deps \
     \
     docker-php-ext-configure gd --with-freetype --with-jpeg; \
     docker-php-ext-configure ldap; \
+    docker-php-ext-configure zip --with-zip; \
     docker-php-ext-install -j "$(nproc)" \
         bcmath \
         exif \
@@ -51,9 +52,8 @@ RUN apk add --no-cache --virtual .build-deps \
         mbstring \
         imap \
         curl \
-        sockets \
-        zip; \
-    \
+        zip \
+    ; \
     pecl install APCu; \
     pecl install memcached; \
     pecl install redis; \
